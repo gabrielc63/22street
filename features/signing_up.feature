@@ -6,7 +6,7 @@ Feature: Signing up
     Then they should see an error message
 
   Scenario: Successful signup
-      Given a user visits the signup page
-      When the user submits valid signup information
-      Then they should see their profile page
-        And they should see a signout link
+    Given a user visits the signup page
+    When the user submits valid signup information
+    Then they should see their profile page
+    And they should see a signout link
