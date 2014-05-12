@@ -1,6 +1,12 @@
-<% provide(:title, 'Home') %>
-<h1>22 Street</h1>
-<p>
-  This is the home page for
-  <a>22 Street</a>
-</p>
+<%# provide(:title, 'Home') %>
+<div class="text-center jumbotron">
+  <h1>A modern social network</h1>
+  <h2>
+    This is the home page for
+    <a>22 Street</a>
+  </h2>
+
+  <%= link_to "Sign up!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= link_to image_tag("22street.png", alt: "22 street"), '#' %>
