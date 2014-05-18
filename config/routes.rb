@@ -1,6 +1,5 @@
 TwentySecondStreet::Application.routes.draw do
-  get "users/new"
-
+  resources :users
   root 'static_pages#home'
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/signup',  to: 'users#new',            via: 'get'

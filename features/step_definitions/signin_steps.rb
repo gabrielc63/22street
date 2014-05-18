@@ -12,7 +12,8 @@ end
 
 Given /^the user has an account$/ do
   @user = User.create(name: "Jhon Doe", email: "jhon_d@myemail.com",
-                      password: "asdasd", password_confirmation: "asdasd")
+                      password: "asdasd", password_confirmation: "asdasd",
+                      username: "jhon")
 end
 
 When /^the user submits valid signin information$/ do
