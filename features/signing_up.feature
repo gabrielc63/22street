@@ -1,12 +1,12 @@
 Feature: Signing up
 
   Scenario: Unsuccessful signup
-    Given a user visits the signup page
-    When they submit invalid signup information
-    Then they should see an error message
+    Given I am on the signup page
+    When I submit invalid signup information
+    Then I should see an error message
 
   Scenario: Successful signup
-    Given a user visits the signup page
-    When the user submits valid signup information
-    Then they should see their profile page
-    And they should see a signout link
+    Given I visit the signup page
+    When I submit valid signup information
+    Then I should see my profile page
+    And I should see a success message
