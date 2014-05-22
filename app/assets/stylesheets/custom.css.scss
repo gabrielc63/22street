@@ -85,12 +85,19 @@ p {
 
   .navbar-nav {
     li {
+      background-color: $lightGreen;
       a {
         color: #fff;
+        background-color: $lightGreen;
       }
     }
   }
 }
+
+.dropdown-menu {
+  background-color: $lightGreen;
+}
+
 
 /* footer */
 
