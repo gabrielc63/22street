@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
 
   before { @user = User.new(name: "Jhon Doe", email: "jdoe@example.com", username: "jdoe",password: "mentira", password_confirmation: "mentira") }
+  let (:friend) { FactoryGirl.create(:friend) }
 
   subject { @user }
 
@@ -14,6 +15,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:posts) }
 
   it { should be_valid }
 
@@ -110,6 +112,31 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "post associations" do
+
+    before { @user.save }
+    let!(:older_post) do
+      FactoryGirl.create(:post, user: @user, to_friend_id: friend.id, created_at: 1.day.ago)
+    end
+    let!(:newer_post) do
+      FactoryGirl.create(:post, user: @user, to_friend_id: friend.id, created_at: 1.hour.ago)
+    end
+
+    it "should have the right posts in the right order" do
+      expect(@user.posts.to_a).to eq [newer_post, older_post]
+    end
+
+    it "should destroy associated posts" do
+      posts = @user.posts.to_a
+      @user.destroy
+      expect(posts).not_to be_empty
+      posts.each do |post|
+        expect(Post.where(id: post.id)).to be_empty
+      end
+    end
+
   end
 
 end
