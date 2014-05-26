@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+#Ignore avatars
+/public/system/users/avatars
+
 # Ignore other unneeded files.
 database.yml
 doc/
