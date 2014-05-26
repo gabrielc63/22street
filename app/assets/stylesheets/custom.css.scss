@@ -160,11 +160,6 @@ aside {
   }
 }
 
-// .gravatar {
-  // float: left;
-  // margin-right: 10px;
-// }
-
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -203,9 +198,9 @@ input {
   display: block;
 }
 .timestamp {
-  color: $grayLight;
+  color: $gray-light;
 }
-.gravatar {
+.avatar {
   float: left;
   margin-right: 10px;
 }

@@ -38,6 +38,8 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -53,14 +55,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-cucumber'
   gem 'rspec-rails'
-  # gem 'capybara'
-  # gem 'cucumber-rails', :require => false
-  # gem 'factory_girl_rails'
-  # gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'jazz_hands'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
