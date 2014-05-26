@@ -20,7 +20,6 @@ When(/^I submit valid signup information$/) do
   fill_in "Email",        with: "jhon_d@myemail.com"
   fill_in "Password",     with: "asdasd"
   fill_in "Confirmation", with: "asdasd"
-  attach_file "user_avatar", 'app/assets/images/ruby.png'
   click_button "Create my account"
 end
 

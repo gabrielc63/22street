@@ -56,7 +56,6 @@ describe "User pages" do
         fill_in "Email",        with: "cholo@gmail.com"
         fill_in "Password",     with: "123456"
         fill_in "Confirmation", with: "123456"
-        attach_file "user_avatar", 'app/assets/images/ruby.png'
       end
 
       it "should create a user" do
