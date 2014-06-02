@@ -3,9 +3,12 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   has_secure_password
   has_many :posts, dependent: :destroy
-  has_attached_file :avatar, :styles => { :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_many :posts_received, :class_name => 'Post', :foreign_key=> 'to_friend_id'
+  has_attached_file :avatar, :styles => { :thumb => "100x100>" },
+                    :default_url => "/images/:style/missing.png"
 
-  validates_attachment :avatar, :presence => true,
+# :presence => true,
+  validates_attachment :avatar,
     :content_type => { :content_type => ["image/jpeg", "image/png"] },
     :size => { :in => 0..100.kilobytes }
   validates :password, length: { minimum: 6 }
@@ -22,6 +25,11 @@ class User < ActiveRecord::Base
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def feed
+    result = posts + posts_received
+    result.sort_by {|f| f.created_at }.reverse!
   end
 
   private

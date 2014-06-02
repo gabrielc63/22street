@@ -1,12 +1,31 @@
 <%# provide(:title, 'Home') %>
+<% if signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/post_form' %>
+      </section>
+    </aside>
+    <% @feed_items.each do |post| %>
+      <a href="<%= user_path post.user %>">
+        <span class="name"><%= post.user.name %></span>
+      </a>
+      <span class="time"><%= time_ago_in_words(post.created_at) %></span>
+      <p> <%= post.content %> </p>
+    <% end %>
+    <%= will_paginate @feed_items %>
+  </div>
+<% else %>
 <div class="text-center jumbotron">
   <h1>A modern social network</h1>
   <h2>
-    This is the home page for
+    This is
     <a>22 Street</a>
   </h2>
 
   <%= link_to "Sign up!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
-
-<%#= link_to image_tag("22street.png", alt: "22 street"), '#' %>
+<% end %>

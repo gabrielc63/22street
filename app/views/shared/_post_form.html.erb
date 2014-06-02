@@ -1,0 +1,9 @@
+<%= form_for(@single_post) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.collection_select(:to_friend_id, User.all, :id, :username,
+                         {prompt: "Select a friend"}, {class: "form-control"}) %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Write new post...", class: "form-control" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-lg btn-primary" %>
+<% end %>

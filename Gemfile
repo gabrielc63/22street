@@ -40,6 +40,10 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem 'will_paginate', '3.0.5'
+
+gem 'bootstrap-will_paginate'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

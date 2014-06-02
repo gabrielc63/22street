@@ -4,7 +4,7 @@ describe User do
 
   before do
     @user = User.new(name: "Jhon Doe", email: "jdoe@example.com", username: "jdoe",password: "mentira", password_confirmation: "mentira")
-    @user.avatar = File.new("app/assets/images/ruby.png")
+    # @user.avatar = File.new("app/assets/images/ruby.png")
   end
   let (:friend) { FactoryGirl.create(:friend) }
 
@@ -13,13 +13,13 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:username) }
-  it { should have_attached_file(:avatar) }
-  it { should validate_attachment_presence(:avatar) }
-  it { should validate_attachment_content_type(:avatar).
-                allowing('image/png', 'image/jpeg').
-                rejecting('text/plain', 'text/xml') }
-  it { should validate_attachment_size(:avatar).
-                in(0..100.kilobytes) }
+  # it { should have_attached_file(:avatar) }
+  # it { should validate_attachment_presence(:avatar) }
+  # it { should validate_attachment_content_type(:avatar).
+                # allowing('image/png', 'image/jpeg').
+                # rejecting('text/plain', 'text/xml') }
+  # it { should validate_attachment_size(:avatar).
+                # in(0..100.kilobytes) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -145,6 +145,16 @@ describe User do
       posts.each do |post|
         expect(Post.where(id: post.id)).to be_empty
       end
+    end
+
+    describe "status" do
+      let(:received_post) do
+        FactoryGirl.create(:post, user: friend, to_friend_id: @user.id)
+      end
+
+      its(:feed) { should include(newer_post) }
+      its(:feed) { should include(older_post) }
+      its(:feed) { should include(received_post) }
     end
 
   end
