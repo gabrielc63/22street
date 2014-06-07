@@ -9,14 +9,19 @@
         <%= render 'shared/post_form' %>
       </section>
     </aside>
+    <div class="col-md-8">
     <% @feed_items.each do |post| %>
       <a href="<%= user_path post.user %>">
         <span class="name"><%= post.user.name %></span>
       </a>
       <span class="time"><%= time_ago_in_words(post.created_at) %></span>
       <p> <%= post.content %> </p>
+      <% if post.picture? %>
+        <%= image_tag post.picture.url(:medium), class: "img-responsive" %>
+      <% end %>
     <% end %>
     <%= will_paginate @feed_items %>
+    </div>
   </div>
 <% else %>
 <div class="text-center jumbotron">

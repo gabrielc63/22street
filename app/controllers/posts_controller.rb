@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:to_friend_id, :content)
+      params.require(:post).permit(:to_friend_id, :content, :picture)
     end
 end
 

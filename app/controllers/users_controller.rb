@@ -30,12 +30,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.paginate(page: params[:page])
+    @posts = @user.posts_received.paginate(page: params[:page])
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :username, :email, :avatar, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:name, :username, :email, :avatar,
+                                    :password, :password_confirmation)
+    end
 end
