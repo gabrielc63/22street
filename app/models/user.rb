@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    result = posts + posts_received
+    result = posts.where(topic_id: nil) + posts_received.where(topic_id: nil)
     result.sort_by {|f| f.created_at }.reverse!
   end
 

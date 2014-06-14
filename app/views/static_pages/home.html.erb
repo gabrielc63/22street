@@ -19,6 +19,25 @@
       <% if post.picture? %>
         <%= image_tag post.picture.url(:medium), class: "img-responsive" %>
       <% end %>
+      <div class="col-md-6">
+      <% post.replies.reverse.each do |r| %>
+        <div id="<%= r.id %>" class="">
+        <a href="<%= user_path r.user %>">
+          <span class="name"><%= r.user.name %></span>
+        </a>
+        <span class="time"><%= time_ago_in_words(r.created_at) %></span>
+        <p> <%= r.content %> </p>
+        </div>
+      <% end %>
+      <%= form_for @reply do |f| %>
+        <p>
+          <%= f.hidden_field :topic_id, :value => post.id %>
+          <%= f.hidden_field :to_friend_id, :value => post.user_id %>
+          <%= f.text_area :content, class: "form-control respuesta-content" %>
+          <%#= f.submit "Post Answer" %>
+        </p>
+      <% end %>
+      </div>
     <% end %>
     <%= will_paginate @feed_items %>
     </div>

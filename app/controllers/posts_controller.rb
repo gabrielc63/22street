@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = "post created!"
-      redirect_to root_url
+      redirect_to root_url + "##{@post.id}"
     else
       render 'static_pages/home'
     end
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:to_friend_id, :content, :picture)
+      params.require(:post).permit(:to_friend_id, :content, :picture, :topic_id)
     end
 end
 
