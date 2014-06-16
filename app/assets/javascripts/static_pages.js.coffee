@@ -11,9 +11,3 @@ $ ->
       form = $(self).closest("form")
       $(form).submit()
     return
-
-  # pos = document.getElementById('5')
-  # $("html, body").animate
-    # scrollTop: ($('#' + localStorage.getItem('myPos')).offset().top)
-  # , 500
-  # return

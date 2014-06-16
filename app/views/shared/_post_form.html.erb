@@ -1,4 +1,5 @@
-<%= form_for @single_post, :html => { :multipart => true } do |f| %>
+<div class="well">
+<%= form_for @single_post, :html => { :multipart => true , :class => "form-horizontal"} do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.collection_select(:to_friend_id, User.all, :id, :username,
                          {prompt: "Select a friend"}, {class: "form-control"}) %>
@@ -8,3 +9,4 @@
   <%= f.file_field :picture %>
   <%= f.submit "Send!", class: "btn  btn-primary" %>
 <% end %>
+</div>

@@ -311,7 +311,7 @@ DEPENDENCIES
   guard-cucumber
   guard-livereload
   guard-rspec
-  jazz_hands
+  jazz_hands (~> 0.5.2)
   jbuilder (~> 1.2)
   jquery-rails
   paperclip!

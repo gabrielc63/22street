@@ -60,7 +60,7 @@ group :development, :test do
   gem 'guard-cucumber'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'jazz_hands'
+  gem 'jazz_hands', '~> 0.5.2'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
