@@ -44,6 +44,8 @@ gem 'will_paginate', '3.0.5'
 
 gem 'bootstrap-will_paginate'
 
+gem "auto_html"
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

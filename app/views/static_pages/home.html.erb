@@ -19,7 +19,7 @@
             <span class="name"><%= post.user.name %></span>
           </a>
           <span class="time" class="pull-right"><%= time_ago_in_words(post.created_at) %> ago</span>
-          <p> <%= post.content %> </p>
+          <p> <%= post.content_html %> </p>
           <% if post.picture? %>
             <%= image_tag post.picture.url(:medium), class: "img-responsive" %>
           <% end %>
@@ -32,20 +32,18 @@
             <span class="name"><%= r.user.name %></span>
           </a>
           <span class="time"><%= time_ago_in_words(r.created_at) %></span>
-          <p> <%= r.content %> </p>
+          <p> <%= r.content_html %> </p>
           </div>
           <% end %>
-        </div>
         <hr>
         <%= form_for @reply do |f| %>
-        <div class="input-group">
         <p>
           <%= f.hidden_field :topic_id, :value => post.id %>
           <%= f.hidden_field :to_friend_id, :value => post.user_id %>
           <%= f.text_area :content, placeholder: "Add a comment...", class: "form-control respuesta-content" %>
         </p>
-        </div>
         <% end %>
+        </div>
       <!-- </div> -->
       </div>
     </div>
