@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :posts_received, :class_name => 'Post', :foreign_key=> 'to_friend_id'
   has_attached_file :avatar, :styles => { :thumb => "100x100>" },
-                    :default_url => "/images/:style/missing.png"
+                    :default_url => ActionController::Base.helpers.asset_path('missing_thumbnail.png')
+                     # "/images/:style/missing.png"
 
-# :presence => true,
   validates_attachment :avatar,
     :content_type => { :content_type => ["image/jpeg", "image/png"] },
     :size => { :in => 0..100.kilobytes }

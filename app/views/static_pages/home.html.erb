@@ -15,14 +15,13 @@
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-body">
+        <%= image_tag post.user.avatar.url(:thumb), class: "avatar_post" %>
           <a href="<%= user_path post.user %>">
             <span class="name"><%= post.user.name %></span>
           </a>
           <span class="time" class="pull-right"><%= time_ago_in_words(post.created_at) %> ago</span>
           <p> <%= post.content_html %> </p>
-          <% if post.picture? %>
-            <%= image_tag post.picture.url(:medium), class: "img-responsive" %>
-          <% end %>
+            <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
         </div>
       <!-- <div class="col-md-6"> -->
         <div class="replies">
