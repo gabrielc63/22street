@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:edit]
+
   def new
     @user = User.new
   end
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
+      sign_in @user
       redirect_to @user
     else
       render 'edit'
@@ -38,5 +41,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :username, :email, :avatar,
                                     :password, :password_confirmation)
+    end
+
+    def signed_in_user
+      redirect_to signin_path, notice: "Please sign in." unless signed_in?
     end
 end

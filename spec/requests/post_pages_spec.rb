@@ -4,6 +4,7 @@ describe "PostPages" do
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:friend) { FactoryGirl.create(:friend) }
   before { sign_in user }
 
   describe "post creation" do
@@ -12,20 +13,23 @@ describe "PostPages" do
     describe "with invalid information" do
 
       it "should not create a post" do
-        expect { click_button "Post" }.not_to change(Post, :count)
+        expect { click_button "Send!" }.not_to change(Post, :count)
       end
 
       describe "error messages" do
-        before { click_button "Post" }
+        before { click_button "Send!" }
         it { should have_content('error') }
       end
     end
 
     describe "with valid information" do
 
-      before { fill_in 'post_content', with: "Lorem ipsum" }
+      before do
+        fill_in 'post_content', with: "Lorem ipsum"
+        find_by_id('post_to_friend_id').find(:xpath, 'option[2]').select_option
+      end
       it "should create a new post" do
-        expect { click_button "Post" }.to change(Post, :count).by(1)
+        expect { click_button "Send!" }.to change(Post, :count).by(1)
       end
     end
   end

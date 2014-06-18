@@ -14,8 +14,8 @@ describe "User pages" do
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     let(:friend) { FactoryGirl.create(:friend) }
-    let!(:m1) { FactoryGirl.create(:post, user: user, to_friend_id: friend.id, content: "Hi") }
-    let!(:m2) { FactoryGirl.create(:post, user: user, to_friend_id: friend.id, content: "Hello") }
+    let!(:m1) { FactoryGirl.create(:post, user: friend, to_friend_id: user.id, content: "Hi") }
+    let!(:m2) { FactoryGirl.create(:post, user: friend, to_friend_id: user.id, content: "Mate") }
 
     before { visit user_path(user) }
 
@@ -25,7 +25,7 @@ describe "User pages" do
     describe "posts" do
       it { should have_content(m1.content) }
       it { should have_content(m2.content) }
-      it { should have_content(user.posts.count) }
+      it { should have_content(user.posts_received.count) }
     end
   end
 
@@ -77,7 +77,10 @@ describe "User pages" do
 
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
-    before { visit edit_user_path(user) }
+    before do
+      sign_in user
+      visit edit_user_path(user)
+    end
 
     describe "page" do
       it { should have_content("Update your profile") }
@@ -88,6 +91,25 @@ describe "User pages" do
       before { click_button "Save changes" }
 
       it { should have_content('error') }
+    end
+
+    describe "with valid information" do
+      let(:new_name) { "New Name" }
+      let(:new_email) { "new_email@email.com" }
+      before do
+        fill_in "Name",         with: new_name
+        fill_in "Username",     with: user.username
+        fill_in "Email",        with: new_email
+        fill_in "Password",     with: user.password
+        fill_in "Confirmation", with: user.password
+        click_button "Save changes"
+      end
+
+      it { should have_selector('h1', text: new_name)}
+      it { should have_link('Sign out', href: signout_path)}
+      it { should have_selector('div.alert.alert-success', text: 'Profile updated') }
+      specify { user.reload.name.should == new_name }
+      specify { user.reload.email.should == new_email }
     end
   end
 end

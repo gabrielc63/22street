@@ -9,7 +9,7 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @user.posts.any? %>
+    <% if @user.posts_received.any? %>
       <h3>Messages (<%= @user.posts_received.count %>)</h3>
       <ol class="posts">
         <%= render @posts %>
