@@ -1,18 +1,16 @@
 FactoryGirl.define do
   factory :user do
-    name     "calvin klein"
-    username "calvink"
-    email    "calvin@example.com"
-    # avatar   File.new("app/assets/images/ruby.png")
-    password "mentira"
-    password_confirmation "mentira"
+    sequence(:name) { |n| "Person #{n}" }
+    sequence(:username) { |n| "name #{n}" }
+    sequence(:email) { |n| "email_#{n}@gmail.com" }
+    password "sample"
+    password_confirmation "sample"
   end
 
   factory :friend, class: User do
     name     "marcelo salas"
     username "matador"
     email    "elmatador@gmail.com"
-    # avatar   File.new("app/assets/images/ruby.png")
     password "blabla#"
     password_confirmation "blabla#"
   end
