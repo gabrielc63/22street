@@ -107,11 +107,50 @@ describe "Authentication" do
         it { should_not have_title('Edit user') }
       end
 
-      describe "submitting a PUT request to the Users#update action" do
+      describe "submitting a PATCH request to the Users#update action" do
         before { patch user_path(wrong_user) }
         specify { response.should redirect_to root_path }
       end
     end
+
+    describe "as non admin user" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:non_admin) { FactoryGirl.create(:user) }
+
+      before { sign_in non_admin, no_capybara: true }
+
+      describe "submitting a DELETE request to destroy users action" do
+        before { delete user_path(user) }
+        specify { expect(response).to redirect_to root_path   }
+      end
+    end
+
+    describe "as admin user" do
+      let(:admin) { FactoryGirl.create(:admin) }
+
+      before { sign_in admin, no_capybara: true }
+
+      describe "submitting a DELETE request to the same admin" do
+        before { delete user_path(admin) }
+        specify { expect(response).to redirect_to root_path }
+      end
+    end
+
+    describe "as signed in user" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user, no_capybara: true }
+
+      describe "visiting Users#new" do
+        before { get new_user_path }
+        specify { expect(page).to redirect_to root_path }
+      end
+
+      describe "submitting a POST request to Users#create" do
+        before { post users_path }
+        specify { expect(page).to redirect_to root_path }
+      end
+    end
+
   end
 
 end

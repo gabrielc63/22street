@@ -13,8 +13,6 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:username) }
-  # it { should have_attached_file(:avatar) }
-  # it { should validate_attachment_presence(:avatar) }
   # it { should validate_attachment_content_type(:avatar).
                 # allowing('image/png', 'image/jpeg').
                 # rejecting('text/plain', 'text/xml') }
@@ -25,9 +23,20 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:admin) }
   it { should respond_to(:posts) }
 
   it { should be_valid }
+  it { should_not be_admin }
+
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
 
   describe "when name is not present" do
     before { @user.name = " " }

@@ -1,12 +1,19 @@
 language: ruby
 rvm:
-  - 2.1.1
-bundler_args: --without production
+- 2.1.1
+bundler_args: "--without production"
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
 script:
-  - RAILS_ENV=test
-  - bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec
+- RAILS_ENV=test
+- bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: LOZQTyKPXObZNOfkKv7nqaZ3E/kZiQge24fmKklnZYPXsCfpZdrfcoetO182knQtS3NXyhfOsDVjaR70TRvbc2zQHH718gwOLsOXpQCNKz7Vga6Mg1XoCzisG1V0lj9oVIQ9lgy4RE0GmVreQLStIsaTUZbE3au9PZbjEqnK97o=
+  strategy: git
+  run: "rake db:migrate"
+  app: twenty2street

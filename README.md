@@ -1,24 +1,29 @@
-== README
+# Twenty second street
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ Twenty second street is a social network built with rails and HTML5
 
-Things you may want to cover:
+[![Build Status](https://travis-ci.org/gabrielc63/22street.svg?branch=master)](https://travis-ci.org/gabrielc63/22street)
 
-* Ruby version
+### Online demo
+  http://twenty2street.herokuapp.com/
 
-* System dependencies
+### Ruby version
+ 2.1.1
 
-* Configuration
+### System dependencies
 
-* Database creation
+  imagemagick
 
-* Database initialization
 
-* How to run the test suite
+### Database creation
+  ```
+  $ rake db:create:all
+  $ rake db:migrate
+  $ rake db:test:prepare
+  ```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### How to run the test suite
+  ```
+  $ bundle exec cucumber
+  $ bundle exec rspec
+  ```

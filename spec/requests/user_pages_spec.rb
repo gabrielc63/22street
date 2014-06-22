@@ -7,7 +7,7 @@ describe "User pages" do
   describe "index page" do
     let(:user) { FactoryGirl.create(:user)  }
 
-    before (:each) do
+    before(:each) do
       sign_in user
       visit users_path
     end
@@ -27,6 +27,28 @@ describe "User pages" do
       end
 
       it { should have_selector('div.pagination') }
+    end
+
+    describe "delete links" do
+      it { should_not have_link('delete') }
+
+      describe "as an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+
+        it "should be able to delete a user" do
+          expect do
+            click_link('delete', match: :first)
+          end.to change(User, :count).by (-1)
+        end
+
+        it { should_not have_link('delete', href: user_path(admin)) }
+      end
     end
 
   end
@@ -138,6 +160,19 @@ describe "User pages" do
       specify { user.reload.name.should == new_name }
       specify { user.reload.email.should == new_email }
     end
+
+    describe "forbbiden attributes" do
+      let(:params) do
+        { user: {admin: true, password: user.password,
+                 password_confirmation: user.password} }
+      end
+      before do
+        sign_in user, no_capybara: true
+        patch user_path(user), params
+      end
+      specify { expect(user.reload).not_to be_admin }
+    end
+
   end
 end
 
