@@ -11,9 +11,9 @@
   <div class="col-md-8">
     <% if @user.posts_received.any? %>
       <h3>Messages (<%= @user.posts_received.count %>)</h3>
-      <ol class="posts">
+      <div class="row">
         <%= render @posts %>
-      </ol>
+      </div>
       <%= will_paginate @posts %>
     <% end %>
   </div>

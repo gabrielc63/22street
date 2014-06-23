@@ -1,8 +1,20 @@
-<li>
-  <span class="content"><%= post.user.name %></span>
-  <span class="timestamp">
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-body">
+  <%= image_tag post.user.avatar.url(:thumb), class: "avatar_post" %>
+  <a href="<%= user_path post.user %>">
+    <span class="name"><%= post.user.name %></span>
+  </a>
+  <span class="timestamp pull-right">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
-  <span class="content"><%= post.content %></span>
+  <% if current_user?(post.user) %>
+    <%= link_to "delete", post, method: :delete,
+        data: { confirm: "You sure?" },
+        title: post.content %>
+  <% end %>
+  <p> <%= post.content_html %> </p>
   <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
-</li>
+  </div>
+  </div>
+</div>

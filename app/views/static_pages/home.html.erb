@@ -19,11 +19,15 @@
           <a href="<%= user_path post.user %>">
             <span class="name"><%= post.user.name %></span>
           </a>
-          <span class="time" class="pull-right"><%= time_ago_in_words(post.created_at) %> ago</span>
+          <span class="time pull-right"><%= time_ago_in_words(post.created_at) %> ago</span>
+          <% if current_user?(post.user) %>
+    <%= link_to "delete", post, method: :delete,
+        data: { confirm: "You sure?" },
+        title: post.content %>
+  <% end %>
           <p> <%= post.content_html %> </p>
             <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
         </div>
-      <!-- <div class="col-md-6"> -->
         <div class="replies">
           <% post.replies.reverse.each do |r| %>
           <div id="<%= r.id %>" class="reply">
@@ -43,7 +47,6 @@
         </p>
         <% end %>
         </div>
-      <!-- </div> -->
       </div>
     </div>
     <% end %>

@@ -30,4 +30,12 @@ module SessionsHelper
     #is nil after a redirect anyway
     self.current_user = nil
   end
+
+  def signed_in_user(new_return_point = request.url)
+      # raise signed_in?.inspect
+      unless signed_in?
+        set_return_point(new_return_point)
+        redirect_to signin_path, notice: "Please sign in."
+      end
+  end
 end

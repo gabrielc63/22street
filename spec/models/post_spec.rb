@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Post do
 
-  let (:user) { FactoryGirl.create(:user) }
-  let (:friend) { FactoryGirl.create(:friend) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:friend) { FactoryGirl.create(:friend) }
   before { @post = user.posts.build(content: "bla bla bla", to_friend_id: friend.id) }
 
   subject { @post }

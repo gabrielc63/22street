@@ -96,6 +96,19 @@ describe "Authentication" do
           it { should have_title('Sign in') }
         end
       end
+
+      describe "in the posts controller" do
+
+        describe "submitting to the create post action" do
+          before { post posts_path }
+          specify { expect(response).to redirect_to(signin_path)   }
+        end
+
+        describe "submitting to the destroy post action" do
+          before { delete post_path(FactoryGirl.create(:post, to_friend_id: user.id)) }
+          specify { expect(response).to redirect_to(signin_path)   }
+        end
+      end
     end
 
     describe "as wrong user" do

@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts_received.paginate(page: params[:page])
+    @posts = @user.posts_received.where(topic_id: nil).paginate(page: params[:page])
   end
 
   def destroy
@@ -59,13 +59,7 @@ class UsersController < ApplicationController
                                     :password, :password_confirmation)
     end
 
-    def signed_in_user(new_return_point = request.url)
-      # raise signed_in?.inspect
-      unless signed_in?
-        set_return_point(new_return_point)
-        redirect_to signin_path, notice: "Please sign in."
-      end
-    end
+
 
     def correct_user
       @user = User.find(params[:id])
