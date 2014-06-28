@@ -10,8 +10,7 @@
   </span>
   <% if current_user?(post.user) %>
     <%= link_to "delete", post, method: :delete,
-        data: { confirm: "You sure?" },
-        title: post.content %>
+        data: { confirm: "You sure?" } %>
   <% end %>
   <p> <%= post.content_html %> </p>
   <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
@@ -23,6 +22,10 @@
         <span class="name"><%= r.user.name %></span>
     </a>
     <span class="time"><%= time_ago_in_words(r.created_at) %></span>
+    <% if current_user?(r.user) %>
+      <%= link_to "delete", r, method: :delete,
+          data: { confirm: "You sure?" } %>
+    <% end %>
     <p> <%= r.content_html %> </p>
     </div>
   <% end %>
