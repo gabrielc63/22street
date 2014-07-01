@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '0.17.1'
@@ -47,6 +47,9 @@ gem 'bootstrap-will_paginate'
 gem "auto_html"
 
 gem 'faker', '1.1.2'
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring',        group: :development
 
 # Use unicorn as the app server
 # gem 'unicorn'
