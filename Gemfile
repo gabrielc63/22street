@@ -66,6 +66,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-cucumber'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   gem 'shoulda-matchers'
   gem 'jazz_hands', '~> 0.5.2'
   gem 'better_errors'
@@ -73,7 +74,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '2.35.1'
+  # gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.2.1'
   gem 'factory_girl_rails', '4.4.1'
   gem 'cucumber-rails', :require => false
