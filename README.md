@@ -8,7 +8,7 @@
   http://twenty2street.herokuapp.com/
 
 ### Ruby version
- 2.1.1
+ 2.1.4
 
 ### System dependencies
 
@@ -19,7 +19,6 @@
   ```
   $ rake db:create:all
   $ rake db:migrate
-  $ rake db:test:prepare
   ```
 
 ### How to run the test suite

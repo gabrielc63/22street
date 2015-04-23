@@ -1,8 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Post do
 
   let(:user) { FactoryGirl.create(:user) }
+  # user = FactoryGirl.create(:user)
   let(:friend) { FactoryGirl.create(:friend) }
   before { @post = user.posts.build(content: "bla bla bla", to_friend_id: friend.id) }
 
@@ -12,7 +13,8 @@ describe Post do
   it { should respond_to(:to_friend_id) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
-  its(:user) { should eq user}
+  # its(:user) { should eq user}
+  # expect(@post.user).to eq(user)
 
   it { should be_valid }
 
