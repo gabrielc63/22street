@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "User pages" do
 
@@ -161,7 +161,7 @@ describe "User pages" do
       specify { user.reload.email.should == new_email }
     end
 
-    describe "forbbiden attributes" do
+    describe "forbbiden attributes", type: :request do
       let(:params) do
         { user: {admin: true, password: user.password,
                  password_confirmation: user.password} }
@@ -175,4 +175,3 @@ describe "User pages" do
 
   end
 end
-

@@ -1,4 +1,5 @@
-require 'spec_helper'
+require 'rails_helper'
+require 'support/utilities'
 
 describe "Authentication" do
 
@@ -7,7 +8,7 @@ describe "Authentication" do
   describe "signin page" do
     before {visit signin_path}
 
-    it { should have_content('Sign in') }
+    it { should have_text('Sign in') }
     it { should have_title('Sign in') }
   end
 
@@ -44,7 +45,7 @@ describe "Authentication" do
     end
   end
 
-  describe "authorization" do
+  describe "authorization", type: :request do
     let(:user) { FactoryGirl.create(:user) }
 
     describe "for non signed in users" do
