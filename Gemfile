@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.1.7'
+ruby '2.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.1.9'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '0.17.1'
 
 gem 'sass-rails', '~> 4.0.3'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.3.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -33,7 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'paperclip', '~> 4.2.1'
 
-gem 'will_paginate', '3.0.5'
+gem 'will_paginate', '3.0.7'
 
 gem 'bootstrap-will_paginate'
 
@@ -76,3 +76,5 @@ end
 group :production do
   gem 'rails_12factor', '0.0.2'
 end
+
+gem 'simplecov', :require => false, :group => :test

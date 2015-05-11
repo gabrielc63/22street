@@ -1,42 +1,46 @@
 <div class="col-md-6">
   <div class="panel panel-default">
-  <div class="panel-body">
-  <%= image_tag post.user.avatar.url(:thumb), class: "avatar_post" %>
-  <a href="<%= user_path post.user %>">
-    <span class="name"><%= post.user.name %></span>
-  </a>
-  <span class="timestamp pull-right">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-  </span>
-  <% if current_user?(post.user) %>
-    <%= link_to "delete", post, method: :delete,
-        data: { confirm: "You sure?" } %>
-  <% end %>
-  <p> <%= post.content_html %> </p>
-  <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
-  </div>
-  <div class="replies">
-  <% post.replies.reverse.each do |r| %>
-    <div id="<%= r.id %>" class="reply">
-    <a href="<%= user_path r.user %>">
-        <span class="name"><%= r.user.name %></span>
-    </a>
-    <span class="time"><%= time_ago_in_words(r.created_at) %></span>
-    <% if current_user?(r.user) %>
-      <%= link_to "delete", r, method: :delete,
+    <div class="panel-body">
+      <%= image_tag post.user.avatar.url(:thumb), class: "avatar_post" %>
+      <a href="<%= user_path post.user %>">
+        <span class="name"><%= post.user.name %></span>
+      </a>
+      <span class="timestamp pull-right">
+        Posted <%= time_ago_in_words(post.created_at) %> ago.
+      </span>
+
+      <% if current_user?(post.user) %>
+        <%= link_to "delete", post, method: :delete,
           data: { confirm: "You sure?" } %>
-    <% end %>
-    <p> <%= r.content_html %> </p>
+      <% end %>
+
+      <p> <%= post.content_html %> </p>
+      <%= image_tag post.picture.url(:medium), class: "img-responsive" if post.picture? %>
     </div>
-  <% end %>
-  <hr>
-  <%= form_for @reply do |f| %>
-    <p>
-      <%= f.hidden_field :topic_id, :value => post.id %>
-      <%= f.hidden_field :to_friend_id, :value => post.user_id %>
-      <%= f.text_area :content, placeholder: "Add a comment...", class: "form-control respuesta-content" %>
-    </p>
-    <% end %>
-  </div>
+
+    <div class="replies">
+      <% post.replies.reverse.each do |r| %>
+        <div id="<%= r.id %>" class="reply">
+          <a href="<%= user_path r.user %>">
+            <span class="name"><%= r.user.name %></span>
+          </a>
+          <span class="time"><%= time_ago_in_words(r.created_at) %></span>
+
+          <% if current_user?(r.user) %>
+            <%= link_to "delete", r, method: :delete,
+            data: { confirm: "You sure?" } %>
+          <% end %>
+          <p> <%= r.content_html %> </p>
+        </div>
+      <% end %>
+      <hr>
+      <%= form_for @reply do |f| %>
+        <p>
+          <%= f.hidden_field :topic_id, :value => post.id %>
+          <%= f.hidden_field :to_friend_id, :value => post.user_id %>
+          <%= f.text_area :content, placeholder: "Add a comment...", class: "form-control respuesta-content" %>
+        </p>
+      <% end %>
+    </div>
   </div>
 </div>

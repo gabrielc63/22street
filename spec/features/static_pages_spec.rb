@@ -1,40 +1,43 @@
 require 'rails_helper'
+require 'support/utilities'
 
-describe "StaticPages" do
+feature "StaticPages" do
 
-  subject { page }
+  #subject { page }
+  context "as a user" do
 
-  describe "Home Page" do
-    before { visit root_path }
+    scenario "visits home page" do
+      visit root_path
 
-    it { should have_content('22 Street') }
-    it { should have_title(full_title('')) }
-    it { should_not have_title('| Home') }
+      expect(page).to have_content '22 Street'
+      expect(page).to have_title(full_title(''))
+      expect(page).not_to have_title('| Home')
+    end
 
-    describe "for signed-in users" do
-      let(:user) { FactoryGirl.create(:user) }
-      let(:friend) { FactoryGirl.create(:friend) }
-      before do
-        FactoryGirl.create(:post, user: user, content: "Lorem ipsum",
+    scenario "visits contact page" do
+      visit contact_path
+
+      expect(page).to have_content('Contact')
+      expect(page).to have_title(full_title('Contact'))
+    end
+  end
+
+  context "as a sign-in user" do
+    scenario "visits home page" do
+      user = create(:user)
+      friend = create(:friend)
+
+      create(:post, user: user, content: "Lorem ipsum",
                            to_friend_id: friend.id)
-        FactoryGirl.create(:post, user: user, content: "Dolor sit amet",
+      create(:post, user: user, content: "Dolor sit amet",
                            to_friend_id: friend.id)
-        sign_in user
-        visit root_path
-      end
+      sign_in user
+      visit root_path
 
-      it "should render the user's feed" do
-        user.feed.each do |item|
-          expect(page).to have_selector('p', text: item.content)
-        end
+      user.feed.each do |item|
+        expect(page).to have_selector('p', text: item.content)
       end
     end
   end
 
-  describe "Contact page" do
-    before { visit contact_path }
-
-    it { should have_content('Contact') }
-    it { should have_title(full_title('Contact')) }
-  end
 end

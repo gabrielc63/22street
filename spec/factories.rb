@@ -14,7 +14,7 @@ FactoryGirl.define do
   factory :friend, class: User do
     name     "marcelo salas"
     username "matador"
-    email    "elmatador@gmail.com"
+    sequence(:email) { |n| "elmatador_#{n}@gmail.com" }
     password "blabla#"
     password_confirmation "blabla#"
   end
