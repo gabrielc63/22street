@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-05-10T16:58:08-03:00">2015-05-10T16:58:08-03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-07-16T00:00:49-03:00">2015-07-16T00:00:49-03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         11.18
+         11.17
        </span>
     </span> hits/line)
   </h2>
@@ -147,7 +147,7 @@
         <td>18</td>
         <td>18</td>
         <td>0</td>
-        <td>37.4</td>
+        <td>37.1</td>
       </tr>
       
       <tr>
@@ -1201,7 +1201,7 @@
         <li class="covered" data-hits="50" data-linenumber="41">
           <span class="hits">50</span>
           
-          <code class="ruby">    @posts = @user.posts_received.where(topic_id: nil).paginate(page: params[:page])</code>
+          <code class="ruby">    @posts = @user.posts_received.where(topic_id: nil).includes(:replies).paginate(page: params[:page])</code>
         </li>
       
         <li class="covered" data-hits="50" data-linenumber="42">
@@ -1912,8 +1912,8 @@
           <code class="ruby">  belongs_to :to_friend, :class_name =&gt; &#39;User&#39;, :foreign_key =&gt; &#39;to_friend_id&#39;</code>
         </li>
       
-        <li class="covered" data-hits="542" data-linenumber="9">
-          <span class="hits">542</span>
+        <li class="covered" data-hits="537" data-linenumber="9">
+          <span class="hits">537</span>
           
           <code class="ruby">  default_scope -&gt; { order(&#39;created_at DESC&#39;) }</code>
         </li>

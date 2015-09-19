@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts_received.where(topic_id: nil).paginate(page: params[:page])
+    @posts = @user.posts_received.where(topic_id: nil).includes(:replies).paginate(page: params[:page])
     @reply = @user.posts.build
   end
 

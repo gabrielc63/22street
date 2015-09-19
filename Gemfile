@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.9'
+gem 'rails', '4.1.13'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '0.17.1'
+gem 'pg', '0.18.3'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.3.0'
@@ -14,7 +14,6 @@ gem 'bootstrap-sass', '~> 3.3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails'

@@ -19,13 +19,11 @@
     </div>
   </div>
 <% else %>
-<div class="text-center jumbotron">
-  <h1>A modern social network</h1>
-  <h2>
-    This is
-    <a>22 Street</a>
-  </h2>
 
-  <%= link_to "Sign up!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+  <div class="text-center jumbotron">
+    <h1>A modern social network</h1>
+    <h2>This is <a>22 Street</a></h2>
+    <%= link_to "Sign up!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+  
 <% end %>
