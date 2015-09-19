@@ -63,6 +63,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'byebug', '~> 3.5.1'
+  gem 'quiet_assets'
 end
 
 group :test do
