@@ -36,7 +36,7 @@ gem 'will_paginate', '3.0.7'
 
 gem 'bootstrap-will_paginate'
 
-gem "auto_html"
+gem 'auto_html', '1.6.4'
 
 gem 'faker', '1.1.2'
 
@@ -64,6 +64,13 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'byebug', '~> 3.5.1'
   gem 'quiet_assets'
+  #debug
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+  gem 'pry-rescue'
+  gem 'awesome_print'
+  gem 'hirb'
 end
 
 group :test do
