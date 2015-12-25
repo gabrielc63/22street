@@ -157,8 +157,8 @@ describe "User pages" do
       it { should have_selector('h1', text: new_name)}
       it { should have_link('Sign out', href: signout_path)}
       it { should have_selector('div.alert.alert-success', text: 'Profile updated') }
-      specify { user.reload.name.should == new_name }
-      specify { user.reload.email.should == new_email }
+      specify { expect(user.reload.name).to eq(new_name)}
+      specify { expect(user.reload.email).to eq(new_email)}
     end
 
     describe "forbbiden attributes", type: :request do

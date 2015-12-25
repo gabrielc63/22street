@@ -8,8 +8,8 @@ describe "Authentication" do
   describe "signin page" do
     before {visit signin_path}
 
-    it { should have_text('Sign in') }
-    it { should have_title('Sign in') }
+    it { is_expected.to have_text('Sign in') }
+    it { is_expected.to have_title('Sign in') }
   end
 
   describe "signin" do
@@ -89,12 +89,12 @@ describe "Authentication" do
 
         describe "submitting to the update action" do
           before { patch user_path(user) }
-          specify { response.should redirect_to signin_path }
+          specify { expect(response).to redirect_to signin_path }
         end
 
         describe "visiting the users index" do
           before { visit users_path }
-          it { should have_title('Sign in') }
+          it { is_expected.to have_title('Sign in') }
         end
       end
 
@@ -123,7 +123,7 @@ describe "Authentication" do
 
       describe "submitting a PATCH request to the Users#update action" do
         before { patch user_path(wrong_user) }
-        specify { response.should redirect_to root_path }
+        specify { expect(response).to redirect_to root_path }
       end
     end
 
