@@ -12,7 +12,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: LOZQTyKPXObZNOfkKv7nqaZ3E/kZiQge24fmKklnZYPXsCfpZdrfcoetO182knQtS3NXyhfOsDVjaR70TRvbc2zQHH718gwOLsOXpQCNKz7Vga6Mg1XoCzisG1V0lj9oVIQ9lgy4RE0GmVreQLStIsaTUZbE3au9PZbjEqnK97o=
-  strategy: git
-  run: "rake db:migrate"
+    secure: Z4CkzXtpTxOND7VEfpjvKFY9ATALe3HlZGqfNzf4Zr5+Zcq0g8YI7YlTONec39KAsacKVT/elwxXnIbRMjL+Nq0oJz4bEHp8km2TbXC5euom1mnGdhT09oj7eU1M+FqcxPGBz62G0mSjUn8QVsCokGrzeOSLQS1B1Bv2457Lwoc=
   app: twenty2street
+  on:
+    repo: gabrielc63/22street
