@@ -73,6 +73,32 @@ group :development, :test do
   gem 'hirb'
 end
 
+group :development do
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman', :require => false
+
+  # Checks for code optimization.
+  gem 'rubycritic', :require => false
+
+  # Checks for undefined routes and unreachable actions.
+  gem 'traceroute'
+
+  # Checks for query optimizations.
+  gem 'bullet'
+
+  #  Profiler for your development and production Ruby rack apps.
+  gem 'rack-mini-profiler', require: false
+
+  # Checks for code optimization.
+  gem 'rails_best_practices'
+
+  # Checks for compliance to Sandi Metz's rules for developers.
+  gem 'sandi_meter'
+
+  #  A Ruby static code analyzer, based on the community Ruby style guide.
+  gem 'rubocop', require: false
+end
+
 group :test do
   gem 'capybara', '2.2.1'
   gem 'factory_girl_rails', '4.4.1'
